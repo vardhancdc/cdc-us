@@ -1,0 +1,2 @@
+ for VM
+gcloud compute instances create varun --machine-type e2-micro --zone us-central1-b --no-restart-on-failure --maintenance-policy terminate --image-family debain-10 --image-project debain-cloud
