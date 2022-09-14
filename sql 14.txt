@@ -1,0 +1,617 @@
+
+mysql> use satya;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_satya |
++-----------------+
+| satya           |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> desc satya;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| addr   | varchar(20) | YES  |     | NULL    |       |
+| PH_NO  | bigint      | YES  |     | NULL    |       |
+| salary | bigint      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc satya:
+    -> select * from satya;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':
+select * from satya' at line 1
+mysql> use vardhan;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_vardhan |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert table vardhan;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table vardhan' at line 1
+mysql> insert table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int
+    ->
+    ->
+    ->
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int
+
+
+' at line 1
+mysql> insert table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int)' at line 1
+mysql> insert table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student(e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int)' at line 1
+mysql> select * from student;
++----------+---------+------+--------+
+| roll_num | st_name | age  | gender |
++----------+---------+------+--------+
+|        1 | nani    |   20 | m      |
++----------+---------+------+--------+
+1 row in set (0.09 sec)
+
+mysql> alter student add column (e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student add column (e_id int,e_name varchar(20),gender char,e_adar bigint,e_dob ' at line 1
+mysql> alter table student add column (e_id int,e_adar bigint,e_dob int);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar | e_dob |
++----------+---------+------+--------+------+--------+-------+
+|        1 | nani    |   20 | m      | NULL |   NULL |  NULL |
++----------+---------+------+--------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_id=101 where roll_num=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar | e_dob |
++----------+---------+------+--------+------+--------+-------+
+|        1 | nani    |   20 | m      |  101 |   NULL |  NULL |
++----------+---------+------+--------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_id=101 where e_adar=897656787677;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar | e_dob |
++----------+---------+------+--------+------+--------+-------+
+|        1 | nani    |   20 | m      |  101 |   NULL |  NULL |
++----------+---------+------+--------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_adar=897656787677 where roll_num=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar       | e_dob |
++----------+---------+------+--------+------+--------------+-------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |  NULL |
++----------+---------+------+--------+------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_dob25-06-1998 where roll_num=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-06-1998 where roll_num=1' at line 1
+mysql> update student set e_dob=25-06-1998 where roll_num=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar       | e_dob |
++----------+---------+------+--------+------+--------------+-------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 | -1979 |
++----------+---------+------+--------+------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_dob=25/06/1998 where roll_num=1;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar       | e_dob |
++----------+---------+------+--------+------+--------------+-------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |     0 |
++----------+---------+------+--------+------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> update student set e_dob=25/06/1998 where roll_num=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+-------+
+| roll_num | st_name | age  | gender | e_id | e_adar       | e_dob |
++----------+---------+------+--------+------+--------------+-------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |     0 |
++----------+---------+------+--------+------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> alter table student drop column e_dob;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+
+| roll_num | st_name | age  | gender | e_id | e_adar       |
++----------+---------+------+--------+------+--------------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |
++----------+---------+------+--------+------+--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student vaules (2,'teja',22,'m',201,256356789000
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> ),(3,'sasi',25,'m',301,2233446789),(4,'rishi',27,'m',301,256790876755),(5,'yash',22,'m',401,456678989099);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vaules (2,'teja',22,'m',201,256356789000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+),(3,'sasi',25,'m',301,' at line 1
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+
+| roll_num | st_name | age  | gender | e_id | e_adar       |
++----------+---------+------+--------+------+--------------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |
++----------+---------+------+--------+------+--------------+
+1 row in set (0.00 sec)
+
+mysql> ),(3,'sasi',25,'m',301,2233446789),(4,'rishi',27,'m',301,256790876755),(5,'yash',22,'m',401,456678989099);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),(3,'sasi',25,'m',301,2233446789),(4,'rishi',27,'m',301,256790876755),(5,'yash'' at line 1
+mysql>  insert into student vaules (2,'teja',22,'m',201,256356789000),(3,'sasi',25,'m',301,2233446789),(4,'rishi',27,'m',401,256790876755),(5,'yash',22,'m',501,456678989099);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vaules (2,'teja',22,'m',201,256356789000),(3,'sasi',25,'m',301,2233446789),(4,'r' at line 1
+mysql> insert into student values (2,'teja',22,'m',201,256356789000),(3,'sasi',25,'m',301,2233446789),(4,'rishi',27,'m',401,256790876755),(5,'yash',22,'m',501,456678989099);
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+
+| roll_num | st_name | age  | gender | e_id | e_adar       |
++----------+---------+------+--------+------+--------------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |
+|        2 | teja    |   22 | m      |  201 | 256356789000 |
+|        3 | sasi    |   25 | m      |  301 |   2233446789 |
+|        4 | rishi   |   27 | m      |  401 | 256790876755 |
+|        5 | yash    |   22 | m      |  501 | 456678989099 |
++----------+---------+------+--------+------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> ),(5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),(5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into studnt vaules(5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into studnt vaules(5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into studnt vaules (5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into studnt vaules (5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into student vaules (5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into student vaules (5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into student values (5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into student values (5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into student values (5,'lekha',21,'f',501,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into student values (5,'lekha',21,'f',501,787899009877)' at line 1
+mysql> )insert into student values (6 insert into student vaules (2,'teja',22,'m',201,256356789000,'lekha',21,'f',601,787899009877);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')insert into student values (6 insert into student vaules (2,'teja',22,'m',201,2' at line 1
+mysql> insert into student values (6,'lekha',21,'f',601,787899009877);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select *from student;
++----------+---------+------+--------+------+--------------+
+| roll_num | st_name | age  | gender | e_id | e_adar       |
++----------+---------+------+--------+------+--------------+
+|        1 | nani    |   20 | m      |  101 | 897656787677 |
+|        2 | teja    |   22 | m      |  201 | 256356789000 |
+|        3 | sasi    |   25 | m      |  301 |   2233446789 |
+|        4 | rishi   |   27 | m      |  401 | 256790876755 |
+|        5 | yash    |   22 | m      |  501 | 456678989099 |
+|        6 | lekha   |   21 | f      |  601 | 787899009877 |
++----------+---------+------+--------+------+--------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> CREATE TABLE EMPY
+    ->        (EMPNO int ,
+    ->         ENAME VARCHAR(10),
+    ->         JOB VARCHAR(9),
+    ->         MGR int,
+    ->         HIREDATE date,
+    ->         SAL int,
+    ->         COMM int,
+    ->         DEPTNO int);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO EMPY VALUES
+    ->         (7369, 'SMITH',  'CLERK',     7902,
+    ->         CAST('1980-12-17' as DATE),  800, NULL, 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7499, 'ALLEN',  'SALESMAN',  7698,
+    ->         CAST('1981-02-20' as DATE), 1600,  300, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7521, 'WARD',   'SALESMAN',  7698,
+    ->         CAST('1981-02-22' as DATE), 1250,  500, 30);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7566, 'JONES',  'MANAGER',   7839,
+    ->         CAST('1981-04-02' as DATE),  2975, NULL, 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7654, 'MARTIN', 'SALESMAN',  7698,
+    ->         CAST('1981-09-28' as DATE), 1250, 1400, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7698, 'BLAKE',  'MANAGER',   7839,
+    ->         CAST('1981-05-01' as DATE),  2850, NULL, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7782, 'CLARK',  'MANAGER',   7839,
+    ->         CAST('1981-06-09' as DATE),  2450, NULL, 10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7788, 'SCOTT',  'ANALYST',   7566,
+    ->         CAST('1982-12-09' as DATE), 3000, NULL, 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7839, 'KING',   'PRESIDENT', NULL,
+    ->         CAST('1981-11-17' as DATE), 5000, NULL, 10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7844, 'TURNER', 'SALESMAN',  7698,
+    ->         CAST('1981-09-08' as DATE),  1500, NULL, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7876, 'ADAMS',  'CLERK',     7788,
+    ->         CAST('1983-01-12' as DATE), 1100, NULL, 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7900, 'JAMES',  'CLERK',     7698,
+    ->         CAST('1981-12-03' as DATE),   950, NULL, 30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> INSERT INTO EMPY VALUES
+    ->         (7902, 'FORD',   'ANALYST',   7566,
+    ->         CAST('1981-12-03' as DATE),  3000, NULL, 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPY VALUES
+    ->         (7934, 'MILLER', 'CLERK',     7782,
+    ->         CAST('1982-01-23' as DATE), 1300, NULL, 10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql>
+mysql> select* from empy;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
++-------+--------+-----------+------+------------+------+------+--------+
+14 rows in set (0.00 sec)
+
+mysql> DEPT TABLE:
+    -> CREATE TABLE DEPT
+    ->        (DEPTNO INT,
+    ->         DNAME VARCHAR(14),
+    ->         LOC VARCHAR(13) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DEPT TABLE:
+CREATE TABLE DEPT
+       (DEPTNO INT,
+        DNAME VARCHAR(14),
+   ' at line 1
+mysql>
+mysql>
+mysql> INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
+ERROR 1146 (42S02): Table 'vardhan.dept' doesn't exist
+mysql> INSERT INTO DEPT VALUES (20, 'RESEARCH',   'DALLAS');
+ERROR 1146 (42S02): Table 'vardhan.dept' doesn't exist
+mysql> INSERT INTO DEPT VALUES (30, 'SALES',      'CHICAGO');
+ERROR 1146 (42S02): Table 'vardhan.dept' doesn't exist
+mysql> INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
+ERROR 1146 (42S02): Table 'vardhan.dept' doesn't exist
+mysql>
+mysql>
+mysql> select *from dept table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table' at line 1
+mysql> select *from dept;
+ERROR 1146 (42S02): Table 'vardhan.dept' doesn't exist
+mysql> CREATE TABLE DEPT
+    ->        (DEPTNO INT,
+    ->         DNAME VARCHAR(14),
+    ->         LOC VARCHAR(13) );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>
+mysql>
+mysql> INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPT VALUES (20, 'RESEARCH',   'DALLAS');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPT VALUES (30, 'SALES',      'CHICAGO');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql>
+mysql> select *from dept;
++--------+------------+----------+
+| DEPTNO | DNAME      | LOC      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select *from empy order by sal;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
++-------+--------+-----------+------+------------+------+------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select *from dept;
++--------+------------+----------+
+| DEPTNO | DNAME      | LOC      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select *from empy order by dept num asc,job desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'num asc,job desc' at line 1
+mysql> select *from empy order by deptno asc,job desc;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
++-------+--------+-----------+------+------------+------+------+--------+
+14 rows in set (0.08 sec)
+
+mysql>
+mysql> select *from empy order by deptno asc,job desc;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
++-------+--------+-----------+------+------------+------+------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select *from empy group by job asc order by job desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc order by job desc' at line 1
+mysql> select *from empy group by job order by job desc;
++-------+-------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+-----------+------+------------+------+------+--------+
+|  7499 | ALLEN | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7369 | SMITH | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |
++-------+-------+-----------+------+------------+------+------+--------+
+5 rows in set (0.07 sec)
+
+mysql> select *from empy where job='manager';
++-------+-------+---------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+---------+------+------------+------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7782 | CLARK | MANAGER | 7839 | 1981-06-09 | 2450 | NULL |     10 |
++-------+-------+---------+------+------------+------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> select *from emps
+    -> select *from empy where hiredate<'1981-01-01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from empy where hiredate<'1981-01-01'' at line 2
+mysql> select * from empy where hiredate < '1981-01-01';
++-------+-------+-------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB   | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+-------+------+------------+------+------+--------+
+|  7369 | SMITH | CLERK | 7902 | 1980-12-17 |  800 | NULL |     20 |
++-------+-------+-------+------+------------+------+------+--------+
+1 row in set (0.07 sec)
+
+mysql> select * from empy where hiredate < '1982-01-01';
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
++-------+--------+-----------+------+------------+------+------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select Empno, Ename, Sal, sal/30 as daily_sal,sal*12 as ann_sal from empy order by ann_sal asc;
++-------+--------+------+-----------+---------+
+| Empno | Ename  | Sal  | daily_sal | ann_sal |
++-------+--------+------+-----------+---------+
+|  7369 | SMITH  |  800 |   26.6667 |    9600 |
+|  7900 | JAMES  |  950 |   31.6667 |   11400 |
+|  7876 | ADAMS  | 1100 |   36.6667 |   13200 |
+|  7521 | WARD   | 1250 |   41.6667 |   15000 |
+|  7654 | MARTIN | 1250 |   41.6667 |   15000 |
+|  7934 | MILLER | 1300 |   43.3333 |   15600 |
+|  7844 | TURNER | 1500 |   50.0000 |   18000 |
+|  7499 | ALLEN  | 1600 |   53.3333 |   19200 |
+|  7782 | CLARK  | 2450 |   81.6667 |   29400 |
+|  7698 | BLAKE  | 2850 |   95.0000 |   34200 |
+|  7566 | JONES  | 2975 |   99.1667 |   35700 |
+|  7788 | SCOTT  | 3000 |  100.0000 |   36000 |
+|  7902 | FORD   | 3000 |  100.0000 |   36000 |
+|  7839 | KING   | 5000 |  166.6667 |   60000 |
++-------+--------+------+-----------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select  Empno, Ename, job, Hiredate, Exp of all Mgrs
+    ->          select empno,ename, job from emp
+    ->
+    ->          select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from empy where job='managers';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'of all Mgrs
+         select empno,ename, job from emp
+
+         select empno,ena' at line 1
+mysql>          select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from empy where job='manager';
++-------+-------+---------+------------+---------+
+| empno | ename | job     | hiredate   | exp     |
++-------+-------+---------+------------+---------+
+|  7566 | JONES | MANAGER | 1981-04-02 | 41.3096 |
+|  7698 | BLAKE | MANAGER | 1981-05-01 | 41.2301 |
+|  7782 | CLARK | MANAGER | 1981-06-09 | 41.1233 |
++-------+-------+---------+------------+---------+
+3 rows in set (0.07 sec)
+
+mysql>          select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from empy where job='m Empno, Ename, job, Hiredate, Exp of all Mgrsanager';
+Empty set (0.00 sec)
+
+mysql>          select empno,ename, job from emp
+    ->
+    ->          select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from empy where empno=7369;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from em' at line 3
+mysql> select Empno, Ename, Sal, datediff(sysdate(),hiredate)/365 as exp from empy where empno=7369;
++-------+-------+------+---------+
+| Empno | Ename | Sal  | exp     |
++-------+-------+------+---------+
+|  7369 | SMITH |  800 | 41.6000 |
++-------+-------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select Empno, Ename, Sal, datediff(sysdate(),hiredate)/365 as exp from empy where empno=7369;
++-------+-------+------+---------+
+| Empno | Ename | Sal  | exp     |
++-------+-------+------+---------+
+|  7369 | SMITH |  800 | 41.6000 |
++-------+-------+------+---------+
+1 row in set (0.00 sec)
+
+mysql>          select empno,ename, job,hiredate,datediff(sysdate(),hiredate)/365 as exp from empy where job='m Empno, Ename, job, Hiredate, Exp of all Mgrsanager';
